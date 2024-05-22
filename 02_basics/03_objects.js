@@ -33,6 +33,7 @@ console.log(person1.greeting)
 console.log(person1.greeting());
 
 /* -----------Object.assign() -------------*/
+
 const target = { a: 1, b: 2 };
 const source = { b: 4, c: 5 };
 const obj1 = { d: 6, e: 7 };
@@ -56,3 +57,17 @@ const obj = Object.assign({}, v1, null, v2, undefined, v3, v4);
 // Primitives will be wrapped, null and undefined will be ignored.
 // Note, only string wrappers can have own enumerable properties.
 console.log(obj); // { "0": "a", "1": "b", "2": "c" }
+
+
+/* -----------Object.groupBy() -------------*/
+
+const inventory = [
+    { name: "asparagus", type: "vegetables", quantity: 5 },
+    { name: "bananas", type: "fruit", quantity: 0 },
+    { name: "goat", type: "meat", quantity: 23 },
+    { name: "cherries", type: "fruit", quantity: 5 },
+    { name: "fish", type: "meat", quantity: 22 },
+  ];
+
+  const result = Object.groupBy(inventory, ({ type }) => type);
+  console.log(result);

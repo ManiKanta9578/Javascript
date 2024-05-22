@@ -69,5 +69,75 @@ const inventory = [
     { name: "fish", type: "meat", quantity: 22 },
   ];
 
-  const result = Object.groupBy(inventory, ({ type }) => type);
-  console.log(result);
+//   const result = Object.groupBy(inventory, ({ type }) => type); //not supproted
+//   console.log(result); 
+
+/* -----------Object.is() -------------*/
+
+// Case 1: Evaluation result is the same as using ===
+Object.is(25, 25); // true
+Object.is("foo", "foo"); // true
+Object.is("foo", "bar"); // false
+Object.is(null, null); // true
+Object.is(undefined, undefined); // true
+// Object.is(window, window); // true
+Object.is([], []); // false
+const foo = { a: 1 };
+const bar = { a: 1 };
+const sameFoo = foo;
+Object.is(foo, foo); // true
+Object.is(foo, bar); // false
+Object.is(foo, sameFoo); // true
+
+// Case 2: Signed zero
+Object.is(0, -0); // false
+Object.is(+0, -0); // false
+Object.is(-0, -0); // true
+
+// Case 3: NaN
+Object.is(NaN, 0 / 0); // true
+Object.is(NaN, Number.NaN); // true
+
+// Note1: Object.is() is not equivalent to the == operator. The == operator applies various coercions to both sides (if they are not the same type) before testing for equality (resulting in such behavior as "" == false being true), but Object.is() doesn't coerce either value.
+
+// Note2: Object.is() is also not equivalent to the === operator. The only difference between Object.is() and === is in their treatment of signed zeros and NaN values. The === operator (and the == operator) treats the number values -0 and +0 as equal, but treats NaN as not equal to each other.
+
+const object1 = {
+    a: 'somestring',
+    b: 42,
+    c: false,
+  };
+  
+  console.log(Object.keys(object1));
+
+//   Note: If you need the property values, use Object.values() instead. If you need both the property keys and values, use Object.entries() instead.
+
+/* -----------Object.setPrototypeOf() -------------*/
+
+const obj3 = {};
+const parent = { foo: 'bar' };
+
+console.log(obj3.foo);
+// Expected output: undefined
+
+Object.setPrototypeOf(obj3, parent);
+
+console.log(obj3.foo);
+
+/* -----------Object.isExtensible() -------------*/
+
+// New objects are extensible.
+const empty = {};
+Object.isExtensible(empty); // true
+
+// They can be made un-extensible
+Object.preventExtensions(empty);
+Object.isExtensible(empty); // false
+
+// Sealed objects are by definition non-extensible.
+const sealed = Object.seal({});
+Object.isExtensible(sealed); // false
+
+// Frozen objects are also by definition non-extensible.
+const frozen = Object.freeze({});
+Object.isExtensible(frozen); // false

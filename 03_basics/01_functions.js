@@ -21,7 +21,7 @@ const cube = function (x) {
 };
 
 const numbers = [0, 1, 2, 5, 10];
-console.log(map(cube, numbers)); // [0, 1, 8, 125, 1000]
+// console.log(map(cube, numbers)); // [0, 1, 8, 125, 1000]
 
 
 
@@ -56,13 +56,120 @@ function fun(i) {
     fun(i - 1);
     console.log(i);
   }
-  fun(3);
+  // fun(3);
   
   
   function calculateCartPrice(val1, val2, ...num1){
     return num1
 }
 
-console.log(calculateCartPrice(200, 400, 500, 2000))
+// console.log(calculateCartPrice(200, 400, 500, 2000))
 
+
+function outside(x){
+  function inside(y){
+    return x+y;
+  }
+  return inside;
+}
+
+const fnOutside = outside(3);
+console.log(fnOutside(5));
+
+
+//Name conflicts
+
+function outside() {
+  const x = 5;
+  function inside(x) {
+    return x * 2;
+  }
+  return inside;
+}
+
+console.log(outside()(10)); // 20 (instead of 10)
+
+//Note: The name conflict happens at the statement return x * 2 and is between inside's parameter x and outside's variable x. The scope chain here is {inside, outside, global object}. Therefore, inside's x takes precedences over outside's x, and 20 (inside's x) is returned instead of 10 (outside's x).
+
+function myConcat(separator) {
+  let result = ""; // initialize list
+  // iterate through arguments
+  for (let i = 1; i < arguments.length; i++) {
+    result += arguments[i] + separator;
+  }
+  return result;
+}
+
+
+// console.log(myConcat(", ", "red", "orange", "blue"));
+
+// console.log(myConcat("; ", "elephant", "giraffe", "lion", "cheetah"));
+
+// console.log(myConcat(". ", "sage", "basil", "oregano", "pepper", "parsley"));
+
+
+// Function parameters
+
+// There are two special kinds of parameter syntax: default parameters and rest parameters.
+// Default parameters: 
+//        In JavaScript, parameters of functions default to undefined.
+
+function multiply(a, b) {
+  b = typeof b !== "undefined" ? b : 1;
+  return a * b;
+}
+
+console.log(multiply(5)); // 5
+
+// Rest parameters:
+//        The rest parameter syntax allows us to represent an indefinite number of arguments as an array.
+
+function multiply(multiplier, ...theArgs) {
+  return theArgs.map((x) => multiplier * x);
+}
+
+const arr = multiply(2, 1, 2, 3);
+console.log(arr); // [2, 4, 6]
+
+
+//this
+
+function chai(){
+    let username = "hitesh"
+    console.log(this.username);
+}
+
+chai() //undefined
+
+const chai2 = function () {
+      let username = "hitesh"
+      console.log(this.username);
+  }
+  
+  const chai3 =  () => {
+      let username = "hitesh"
+      console.log(this);
+  }
+  
+  
+  chai3()
+  
+
+// const addTwo = (num1, num2) => {
+//     return num1 + num2
+// }
+
+// const addTwo = (num1, num2) =>  num1 + num2
+
+// const addTwo = (num1, num2) => ( num1 + num2 )
+
+const addTwo = (num1, num2) => ({username: "hitesh"})
+
+
+console.log(addTwo(3, 4))
+
+
+// const myArray = [2, 5, 3, 7, 8]
+
+// myArray.forEach()
 

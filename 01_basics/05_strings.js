@@ -1,3 +1,18 @@
+let a = "Mani";
+let b = new String("Mani");
+
+console.log(typeof a); //string
+console.log(typeof b); //object
+console.log(a.codePointAt("a"));
+console.log(a.charAt("a"));
+
+
+const firstString = "2 + 2"; // Creates a string literal value
+const secondString = new String("2 + 2"); // Creates a String object
+console.log(eval(firstString)); // Returns the number 4
+console.log(eval(secondString)); // Returns a String object containing "2 + 2"
+
+
 /*--------  at() ---------*/
 const sentence = 'The quick brown fox jumps over the lazy dog.';
 let index = 5;
@@ -184,4 +199,4 @@ const str5 = str1.slice(30);
 
 const str = 'Life, the universe and everything. Answer:';
 
-console.log(`${str} ${str.length}`);
+// console.log(`${str} ${str.length}`);

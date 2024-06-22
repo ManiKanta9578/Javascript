@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .input {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body class="main">
+    <h1 class="title">BMI Index</h1>
+    <p><label>Height in cm</label> <input type="number" placeholder="Height" id="height"></p>
+    <p><label>Weight in kg</label> <input type="number" placeholder="Weight" id="weight"></p>
+    <button id="btn">Calculate</button>
+    <div class="result"></div>
+</body>
+<script>
+    const button = document.getElementById('#btn');
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const result = document.querySelector('.result');
+        const height = parseInt(document.querySelector('#height').value);
+        const weight = parseInt(document.querySelector('#weight').value);
+        console.log(height)
+    })
+    
+</script>
+</html>

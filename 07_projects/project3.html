@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        .box{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #clock{
+            border: 2px solid #2f2f2f;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h3 id="clock"></h3>
+    </div>
+</body>
+<script>
+    const clock = document.getElementById('clock');
+
+    setInterval(() => {
+        let date = new Date();
+        clock.innerHTML = date.toLocaleTimeString('en-IN');
+    }, [1000])
+
+</script>
+
+</html>

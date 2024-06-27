@@ -4,7 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guess the number</title>
+    <title>Guess the Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .resultParas .button {
+            margin-top: 20px;
+        }
+
+        .resultParas .button h2 {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .resultParas .button h2:hover {
+            background-color: #218838;
+        }
+
+        #result {
+            font-size: 20px;
+            color: #ff0000;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,7 +85,7 @@
 
     <script>
         let randomNumber = parseInt(Math.random() * 100 + 1);
-        console.log(randomNumber); // For debugging purposes
+        console.log(randomNumber);
 
         let submit = document.querySelector('#btn');
         let userInput = document.querySelector('#num');
@@ -37,7 +103,7 @@
             submit.addEventListener('click', (e) => {
                 e.preventDefault();
                 const guess = parseInt(userInput.value);
-                console.log(guess); // For debugging purposes
+                console.log(guess);
                 validateGuess(guess);
             });
         }
@@ -50,7 +116,7 @@
             userInput.value = '';
             guessSlot.innerHTML += `${guess}, `;
             numGuess++;
-            remaining.innerHTML = `${11 - numGuess} `;
+            remaining.innerHTML = `Remaining guess: ${11 - numGuess} `;
         }
 
         const validateGuess = (guess) => {
@@ -104,7 +170,7 @@
                 remaining.innerHTML = `${11 - numGuess} `;
                 userInput.removeAttribute('disabled');
                 startOver.removeChild(p);
-                result.innerHTML = ''; // Clear the previous result message
+                result.innerHTML = '';
 
                 playGame = true;
             });

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loaders</title>
+    <style>
+        .loader1 {
+            width: 50px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 8px solid lightblue;
+            border-right-color: orange;
+            animation: l1 1s infinite linear;
+        }
+
+        @keyframes l1 {
+            to {
+                transform: rotate(1turn);
+            }
+        }
+
+        .loader2 {
+            width: 120px;
+            height: 20px;
+            border-radius: 20px;
+            background:
+                repeating-linear-gradient(135deg, #f03355 0 10px, #ffa516 0 20px) 0/0% no-repeat,
+                repeating-linear-gradient(135deg, #ddd 0 10px, #eee 0 20px) 0/100%;
+            animation: l2 2s infinite;
+        }
+
+        @keyframes l2 {
+            100% {
+                background-size: 100%
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loader1"></div>
+    <div class="loader2"></div>
+</body>
+
+</html>

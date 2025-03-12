@@ -3,7 +3,7 @@
 // A piece of code that provide native support to the older browsers who does not have the support of modern functionalities of javascript is known as polyfill.
 
 
-/*forEach
+/* 1. forEach
 The forEach() executes the callback function on each element of array.
 */
 const names = ["ali", "hamza", "jack"]
@@ -22,11 +22,11 @@ Array.prototype.ourForEach = function (callback) {
     }
 }
 
-names.ourforeach(consoleFunc);
+names.ourForEach(consoleFunc);
 //Array.prototype let use run our function on every array this corresponds to the array
 
 // map
-// .map() is very much similar to .forEach() method, except, instead of returning items out of the array, it return the array itself
+// 2. map() is very much similar to .forEach() method, except, instead of returning items out of the array, it return the array itself
 //polyfill -> reduce
 
 Array.prototype.ourMap = function (callback) {
@@ -39,7 +39,7 @@ Array.prototype.ourMap = function (callback) {
 names.ourMap(consoleFunc);
 
 
-/* reduce
+/* 3. reduce
 reduce() function is used to reduce the array to a single value.
 
 not the exact definition, but we will consider this for sake of simplicity */
@@ -67,3 +67,60 @@ console.log(numbers.ourReduce(reduceFun,0));
 
 // more reference 
 // https://dev.to/umerjaved178/polyfills-for-foreach-map-filter-reduce-in-javascript-1h13
+
+
+//-----------------------------------------------------------------------------------------------------------------
+
+
+//Polyfills for call(), apply(), bind() in JavaScript
+
+// 1. call()
+
+let car1 = {
+    color:"black",
+    company:"AUDI"
+}
+
+function purchaseCar(currency, price){
+    console.log(`I have purchaged ${this.company} and ${this.color} car for ${currency}${price}`);
+}
+
+// purchaseCar.call(car1,"$","10000000");
+
+Function.prototype.myCall = function (context = {}, ...args){
+    if(typeof this !== "function") throw new Error(this + "It's not callable");
+
+    context.fn = this;
+    context.fn(...args);
+}
+
+// purchaseCar.myCall(car1,"$","10000000");
+
+
+// 2. apply()
+
+Function.prototype.myApply = function(context= {}, args=[]){
+    if(typeof this !== "function") throw new Error(this + "It's not callable");
+
+    if(!Array.isArray(args)) throw new Error("CreateListFromArrayLike called on non-object");
+
+    context.fn = this;
+    context.fn(...args);
+}
+
+purchaseCar.myApply(car1,["$","10000000"]);
+
+
+// 3 bind()
+
+Function.prototype.myBind = function (context = {}, ...args){
+    if(typeof this !== "function") throw new Error("Cannot be bound as It's not callable");
+
+    context.fn = this;
+    return function(...newArgs){
+        return context.fn(...args, ...newArgs);
+    }
+}
+
+let newFun = purchaseCar.bind(car1, "$");
+console.log(newFun("200000000"));

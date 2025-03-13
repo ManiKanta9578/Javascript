@@ -31,12 +31,18 @@ names.ourForEach(consoleFunc);
 
 // names.map((num, i, arr) => { })
 
-Array.prototype.ourMap = function (callback) {
-    let newArray = [];
-    for (let i = 0; i < this.length; i++) {
-        newArray.push(callback(this[i], i, this));
+Array.prototype.myMap = function (callback) {
+    if (!this || typeof callback !== "function") {
+        throw new TypeError("Invalid input");
     }
-}
+
+    let newArr = [];
+    for (let i = 0; i < this.length; i++) {
+        newArr.push(callback(this[i], i, this));
+    }
+    return newArr;
+};
+
 
 names.ourMap(consoleFunc);
 

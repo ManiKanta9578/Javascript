@@ -4,7 +4,7 @@ function once(fn, context) {
     return function () {
         if (fn) {
             ran = fn.apply(context || this, arguments);
-            fn = null
+            fn = () => {} // Prevent re-execution
         }
 
         return ran;

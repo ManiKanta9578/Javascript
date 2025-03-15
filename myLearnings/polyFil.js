@@ -62,16 +62,17 @@ function reduceFun(accumulator, current) {
 let sum = numbers.reduce(reduceFun, 0);
 console.log(sum);
 
-Array.prototype.ourReduce = function (callback, initialValue) {
+Array.prototype.myReduce = function (callback, initialValue) {
     let accumulator = initialValue === undefined ? this[0] : initialValue;
-
-    for (let i = 0; i < this.length; i++) {
-        accumulator = callback(accumulator, this[i])
+    let startIndex = initialValue === undefined ? 1 : 0; 
+    
+    for (let i = startIndex; i < this.length; i++) {
+      accumulator = callback(accumulator, this[i], i, this);
     }
     return accumulator;
-}
+  };  
 
-console.log(numbers.ourReduce(reduceFun, 0));
+console.log(numbers.myReduce(reduceFun, 0));
 
 // more reference 
 // https://dev.to/umerjaved178/polyfills-for-foreach-map-filter-reduce-in-javascript-1h13

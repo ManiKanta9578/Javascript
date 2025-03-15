@@ -44,7 +44,7 @@ Array.prototype.myMap = function (callback) {
 };
 
 
-names.ourMap(consoleFunc);
+names.myMap(consoleFunc);
 
 
 /* 3. reduce
